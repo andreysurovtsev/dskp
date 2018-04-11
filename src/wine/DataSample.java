@@ -8,10 +8,8 @@ final class DataSample {
     public DataSample(int lb, double[] atr){
         setLabel(lb);
         
-        for(int i = 0; i<atr.length;i++){
-            numOfAttributes++;
-        }
-        
+        numOfAttributes = atr.length;
+                
         this.attributes = new double[numOfAttributes];
         for(int i = 0; i<atr.length;i++){
             attributes[i] = atr[i];
