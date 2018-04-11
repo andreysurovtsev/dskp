@@ -2,11 +2,10 @@ package wine;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Iterator;
+
 import java.util.Scanner;
 
-public final class DataSet {
+public class DataSet {
 
 	private DataSample[] dataArray;
 
