@@ -4,7 +4,6 @@ final class DataSample {
     private int label;
     private int numOfAttributes;
     private double[] attributes;
-    public double dist;
     
     public DataSample(int lb, double[] atr){
         setLabel(lb);
@@ -36,6 +35,7 @@ final class DataSample {
     }
     
     public double distance(DataSample dat){
+        double dist;
         dist = 0;
         for(int i=0; i<numOfAttributes;i++){
             dist = dist + Math.pow((this.attributes[i] - dat.attributes[i]),2);
