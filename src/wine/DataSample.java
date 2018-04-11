@@ -33,8 +33,14 @@ final class DataSample {
     }
     
     public double distance(DataSample dat){
+    	
+    	if (dat.numOfAttributes != numOfAttributes)
+    		throw new RuntimeException("incompatible vector sizes for"
+    				+ "calculating the Euclidean distance.");
+    	
         double dist;
         dist = 0;
+       
         for(int i=0; i<numOfAttributes;i++){
             dist = dist + Math.pow((this.attributes[i] - dat.attributes[i]),2);
         }
