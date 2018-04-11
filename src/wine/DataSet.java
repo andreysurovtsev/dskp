@@ -3,6 +3,7 @@ package wine;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public final class DataSet {
@@ -83,11 +84,59 @@ public final class DataSet {
 	}
 
 	public double[] getMean(int label) {
-		return null;
+		int attrCount = dataArray[0].getnumOfAttributes();
+		double[] res = new double[attrCount];
+	
+		
+		for (int i = 0; i < attrCount; i++) {
+			int n = 0;
+			
+			res[i] = 0;
+
+			for (DataSample d: dataArray) {
+				if (d.getLabel() != label)
+					continue;
+				
+				++n;
+				
+				res[i] += d.getAttributes()[i];				
+			}
+			
+			res[i] /= n;			
+		}
+		
+		
+		return res;
 	}
 
 	public double[] getStd(int label) {
-		return null;
+		int attrCount = dataArray[0].getnumOfAttributes();
+		double[] res = new double[attrCount];
+		
+		double[] mean = getMean(label);
+	
+		
+		for (int i = 0; i < attrCount; i++) {
+			int n = 0;
+			
+			res[i] = 0;
+
+			for (DataSample d: dataArray) {
+				if (d.getLabel() != label)
+					continue;
+				
+				++n;
+				
+				res[i] += Math.pow(d.getAttributes()[i] - mean[i],
+								   2);				
+			}
+			
+			res[i] /= (n - 1);
+			res[i] = Math.sqrt(res[i]);
+		}
+		
+		
+		return res;
 	}
 
 	public DataSample[] getDataSet() {
