@@ -62,16 +62,22 @@ public final class DataSet {
 
 	}
 
-	private int getDataSetSize(String filename) throws FileNotFoundException {
+	public int getDataSetSize(String filename) {				
 		int samples = 0;
 		File file = new File(filename);
-
-		Scanner input = new Scanner(file);
-		while (input.hasNextLine()) {
-			input.nextLine();
-			samples++;
-		}
-		input.close();
+		
+		try {
+			Scanner input = new Scanner(file);
+			while (input.hasNextLine()) {
+				input.nextLine();
+				samples++;
+			}
+			input.close();		
+		} catch (FileNotFoundException e) {
+			System.out.println("Error occured when loading a file " + filename);
+			System.out.println("# of samples set to 0");
+			System.out.println(e);
+		}	
 
 		return samples;
 	}
